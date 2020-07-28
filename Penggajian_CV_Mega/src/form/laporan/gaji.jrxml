@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="no" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     (jabatan.`transp`*absen.`masuk`) AS ttrans,
+     detailgaji.`no_slip` AS detailgaji_no_slip,
+     detailgaji.`id_potongan` AS detailgaji_id_potongan,
+     detailgaji.`jumpot` AS detailgaji_jumpot,
+     gaji.`tgl` AS gaji_tgl,
+     gaji.`id_absen` AS gaji_id_absen,
+     gaji.`tot_gaj` AS gaji_tot_gaj,
+     gaji.`tot_pot` AS gaji_tot_pot,
+     gaji.`terimagaji` AS gaji_terimagaji,
+     gaji.`id_user` AS gaji_id_user,
+     potongan.`nama` AS potongan_nama,
+     absen.`masuk` AS absen_masuk,
+     absen.`id_karyawan` AS absen_id_karyawan,
+     karyawan.`nama` AS karyawan_nama,
+     karyawan.`id_jabatan` AS karyawan_id_jabatan,
+     jabatan.`nama` AS jabatan_nama,
+     jabatan.`gapok` AS jabatan_gapok,
+     jabatan.`jab` AS jabatan_jab,
+     jabatan.`transp` AS jabatan_transp,
+     absen.`alfa` AS absen_alfa,
+     absen.`sakit` AS absen_sakit
+FROM
+     `detailgaji` detailgaji INNER JOIN `gaji` gaji ON detailgaji.`no_slip` = gaji.`no_slip`
+     INNER JOIN `potongan` potongan ON detailgaji.`id_potongan` = potongan.`id_potongan`
+     INNER JOIN `absen` absen ON gaji.`id_absen` = absen.`id_absen`
+     INNER JOIN `karyawan` karyawan ON absen.`id_karyawan` = karyawan.`id_karyawan`
+     INNER JOIN `jabatan` jabatan ON karyawan.`id_jabatan` = jabatan.`id_jabatan`
+WHERE
+     detailgaji.`no_slip` = $P{no}]]>
+	</queryString>
+	<field name="ttrans" class="java.lang.Long"/>
+	<field name="detailgaji_no_slip" class="java.lang.String"/>
+	<field name="detailgaji_id_potongan" class="java.lang.String"/>
+	<field name="detailgaji_jumpot" class="java.lang.Integer"/>
+	<field name="gaji_tgl" class="java.lang.String"/>
+	<field name="gaji_id_absen" class="java.lang.String"/>
+	<field name="gaji_tot_gaj" class="java.lang.Integer"/>
+	<field name="gaji_tot_pot" class="java.lang.Integer"/>
+	<field name="gaji_terimagaji" class="java.lang.Integer"/>
+	<field name="gaji_id_user" class="java.lang.String"/>
+	<field name="potongan_nama" class="java.lang.String"/>
+	<field name="absen_masuk" class="java.lang.Integer"/>
+	<field name="absen_id_karyawan" class="java.lang.String"/>
+	<field name="karyawan_nama" class="java.lang.String"/>
+	<field name="karyawan_id_jabatan" class="java.lang.String"/>
+	<field name="jabatan_nama" class="java.lang.String"/>
+	<field name="jabatan_gapok" class="java.lang.Integer"/>
+	<field name="jabatan_jab" class="java.lang.Integer"/>
+	<field name="jabatan_transp" class="java.lang.Integer"/>
+	<field name="absen_alfa" class="java.lang.Integer"/>
+	<field name="absen_sakit" class="java.lang.Integer"/>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="0" width="122" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detailgaji_no_slip}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[SLIP GAJI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="555" height="28"/>
+				<textElement verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CV.MEGA FORTUNE INDONESIA]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="275" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="19" width="87" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Id Karyawan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="39" width="87" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nama Lengkap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="59" width="87" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="19" width="235" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{absen_id_karyawan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="39" width="235" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{karyawan_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="59" width="235" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jabatan_nama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="93" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Gaji Pokok]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="93" width="276" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jabatan_gapok}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="155" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tunjangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="175" width="148" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[1. Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="195" width="148" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[2. Transportasi]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="175" width="154" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jabatan_jab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="215" width="133" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{jabatan_transp} +" x "+ $F{absen_masuk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="195" width="154" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ttrans}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="235" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Total Gaji]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="235" width="371" height="20"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gaji_tot_gaj}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="135" width="109" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Jumlah Kehadiran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="115" width="42" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Masuk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="115" width="42" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sakit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="115" width="41" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Alfa]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="135" width="42" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{absen_masuk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="135" width="42" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{absen_sakit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="219" y="135" width="41" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{absen_alfa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="255" width="175" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Potongan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="89" y="0" width="133" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{potongan_nama}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="222" y="0" width="154" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detailgaji_jumpot}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="0" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Total Potongan]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="0" width="371" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$F{gaji_tot_pot}+")"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="32" width="122" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Gaji yang diterima]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="135" y="32" width="420" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gaji_terimagaji}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="13" y="20" width="542" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
