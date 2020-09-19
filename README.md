@@ -2,7 +2,7 @@ Penggajian-Java
 
 This is a Payroll program in the Java programming language.
 
-This program was created to fulfill my d3 education program at Bina Sarana Informatika University.
+This program was created to fulfill my Diploma education program at Bina Sarana Informatika University.
 
 Here is a look at the program:
 
